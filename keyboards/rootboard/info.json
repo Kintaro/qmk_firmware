@@ -13,8 +13,8 @@
         "nkro": true
     },
     "matrix_pins": {
-      "cols": ["F7", "B1", "B3", "B2", "B6", "B6", "B2", "B3", "B1", "F7"],
-      "rows": ["B5", "B4", "E6", "D7", "B5", "B4", "E6", "D7"]
+      "cols": ["F7", "B1", "B3", "B2", "B6"],
+      "rows": ["B5", "B4", "E6", "D7"]
     },
     "processor": "atmega32u4",
     "url": "",
