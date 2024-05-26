@@ -29,7 +29,7 @@
   "split": {
     "enabled": true,
     "matrix_pins": {
-      "left": {
+      "right": {
 	"cols": ["F7", "B1", "B3", "B2", "B6"],
         "rows": ["B5", "B4", "E6", "D7"]
       }
