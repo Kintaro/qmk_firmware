@@ -21,13 +21,8 @@ jobs:
     - name: Checkout QMK
       uses: actions/checkout@v3
       with:
-        repository: qmk/qmk_firmware
+        repository: Kintaro/qmk_firmware
         submodules: recursive
-
-    - name: Checkout userspace
-      uses: actions/checkout@v3
-      with:
-        path: users/${{ github.actor }}
 
     - name: Build firmware
       run: qmk compile -kb rootboard -km default
