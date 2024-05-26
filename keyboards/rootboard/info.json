@@ -23,7 +23,19 @@
         "pid": "0x8036",
         "vid": "0x0BDA"
     },
-    "layouts": {
+  "bootmagic": {
+        "matrix": [4, 5]
+    },
+  "split": {
+    "enabled": true,
+    "matrix_pins": {
+      "left": {
+	"cols": ["F7", "B1", "B3", "B2", "B6"],
+        "rows": ["B5", "B4", "E6", "D7"]
+      }
+    }
+  },
+  "layouts": {
         "LAYOUT_split_3x5_3": {
             "layout": [
                 {"matrix": [0, 0], "x": 0, "y": 0.25},
