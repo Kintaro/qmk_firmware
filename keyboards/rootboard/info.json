@@ -24,8 +24,9 @@
         "vid": "0x0BDA"
     },
   "split": {
-    "right": {
+   
     "matrix_pins": {
+       "right": {
       "cols": ["F7", "B1", "B3", "B2", "B6"],
       "rows": ["B5", "B4", "E6", "D7"]
     }
