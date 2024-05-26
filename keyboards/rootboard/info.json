@@ -3,7 +3,7 @@
     "keyboard_name": "rootboard",
     "maintainer": "Kintaro",
     "bootloader": "caterina",
-    "diode_direction": "COL2ROW",
+    "diode_direction": "ROW2COL",
     "features": {
         "bootmagic": true,
         "command": false,
