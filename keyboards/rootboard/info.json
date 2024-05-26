@@ -23,6 +23,14 @@
         "pid": "0x8036",
         "vid": "0x0BDA"
     },
+  "split": {
+    "right": {
+    "matrix_pins": {
+      "cols": ["F7", "B1", "B3", "B2", "B6"],
+      "rows": ["B5", "B4", "E6", "D7"]
+    }
+    }
+  },
  
   "layouts": {
         "LAYOUT_split_3x5_3": {
