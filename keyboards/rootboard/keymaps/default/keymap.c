@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_A,    KC_4,    KC_5,    KC_6,    KC_G,                               KC_M,    KC_H,    KC_A,    KC_E,    KC_I,
         KC_Z,    KC_7,    KC_8,    KC_9,    KC_0,                               KC_Z,    KC_L,    KC_COMM, KC_DOT,  KC_COMM,
                              QK_BOOTLOADER  , KC_BSPC, KC_SPC,           LT(1, KC_Q),  KC_ENT,  QK_BOOTLOADER
-			     )
+			     ),
 
     [2] = LAYOUT_split_3x5_3(
         KC_Q,    KC_LCBR,    KC_LT,    KC_RCBR,    KC_T,                               KC_J,    KC_QUOTE,    KC_O,    KC_U,    KC_DOT,
