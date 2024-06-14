@@ -27,8 +27,8 @@
     "soft_serial_pin": "D0",
     "matrix_pins": {
       "right": {
-      "cols": ["F7", "B1", "B3", "B2", "B6"],
-	"rows": ["B5", "B4", "E6", "D7"]
+      "cols": ["B2", "B3", "B6", "C6", "D7"],
+	"rows": ["E6", "B4", "B5", "B1"]
       }
     },
      },
