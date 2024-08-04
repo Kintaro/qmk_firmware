@@ -67,7 +67,7 @@ static void process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record)
     switch (keycode) {
         case KC_C: SEND_STRING("h"); break;
         case KC_P: SEND_STRING("l"); break;
-        default: set_last_keycode("FMAGIC"); SEND_STRING("f"); break;    
+        default: SEND_STRING("f"); break;    
     }
     }
 }
