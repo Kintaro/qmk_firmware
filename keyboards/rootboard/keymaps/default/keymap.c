@@ -5,16 +5,6 @@
 
 #include "print.h"
 
-enum custom_keycodes {
-  FMAGIC = SAFE_RANGE,
-  VMAGIC,
-  BMAGIC,
-  HMAGIC,
-  PMAGIC,
-  EMAGIC,
-  YMAGIC,
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
@@ -31,9 +21,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         FMAGIC,         KC_D,         PMAGIC,         KC_J,                    QK_AREP,          KC_G,         KC_O,         KC_U,         KC_COMM,
-	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    YMAGIC,          LSFT_T(HMAGIC), LGUI_T(KC_A), LALT_T(EMAGIC), LCTL_T(KC_I),
-        BMAGIC,         VMAGIC,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
+        KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    QK_AREP,          KC_G,         KC_O,         KC_U,         KC_COMM,
+	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
+        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(2, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LT(1, KC_SPC)
 			     ),
     [1] = LAYOUT_split_3x5_3(
@@ -62,70 +52,70 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_TRNS;
 }
 
-static void process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record) {
+static bool process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record) {
     if (record->event.pressed) {
     switch (keycode) {
-        case KC_C: SEND_STRING("h"); break;
+        case KC_C: SEND_STRING("h"); return false;
         case KC_P: SEND_STRING("l"); break;
-        default: SEND_STRING("f"); break;    
+        default: return true;    
     }
     }
 }
 
-static void process_v_magic(uint16_t keycode, uint8_t mods) {
+static bool process_v_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_M: SEND_STRING("p"); break;
-        case KC_C: SEND_STRING("y"); break;
-        default: SEND_STRING("v"); break; 
+        case KC_M: SEND_STRING("p"); return false;
+        case KC_C: SEND_STRING("y"); return false;
+        default: return true; 
     }
 }
 
-static void process_b_magic(uint16_t keycode, uint8_t mods) {
+static bool process_b_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_G: SEND_STRING("h"); break;
-        default: SEND_STRING("b"); break; 
+        case KC_G: SEND_STRING("h"); return false;
+        default: return true; 
     }
 }
 
-static void process_h_magic(uint16_t keycode, uint8_t mods) {
+static bool process_h_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: SEND_STRING("e"); break;
-        case KC_L: SEND_STRING("p"); break;
-        default: SEND_STRING("h"); break; 
+        case KC_U: SEND_STRING("e"); return false;
+        case KC_L: SEND_STRING("p"); return false;
+        default: return true; 
     }
 }
 
-static void process_p_magic(uint16_t keycode, uint8_t mods) {
+static bool process_p_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_H: SEND_STRING("y"); break;
-        default: SEND_STRING("p"); break; 
+        case KC_H: SEND_STRING("y"); return false;
+        default: return true;
     }
 }
 
-static void process_e_magic(uint16_t keycode, uint8_t mods) {
+static bool process_e_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: SEND_STRING("h"); break;
-        default: SEND_STRING("e"); break; 
+        case KC_U: SEND_STRING("h"); return false;
+        default: return true;
     }
 }
 
-static void process_y_magic(uint16_t keycode, uint8_t mods) {
+static bool process_y_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C: SEND_STRING("v"); break;
-        default: SEND_STRING("y"); break; 
+        case KC_C: SEND_STRING("v"); return false;
+        default: return true;
     }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     dprintf("%i record user", keycode);
   switch (keycode) {
-        case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods(), record);  } return false;
-        case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } return false;
-        case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods());  } return false;
-        case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods());  } return false;
-        case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods());  } return false;
-        case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods());  } return false;
-        case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods());  } return false;
+        case KC_F: return process_f_magic(get_last_keycode(), get_last_mods(), record);
+        case KC_V: return  process_v_magic(get_last_keycode(), get_last_mods());
+        case KC_B: return  process_b_magic(get_last_keycode(), get_last_mods());
+        case KC_H: return  process_h_magic(get_last_keycode(), get_last_mods());
+        case KC_P: return  process_p_magic(get_last_keycode(), get_last_mods());
+        case KC_E: return  process_e_magic(get_last_keycode(), get_last_mods());
+        case KC_Y: return  process_y_magic(get_last_keycode(), get_last_mods());
         }
 
     return true;
@@ -135,7 +125,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
   debug_enable=true;
-  //debug_matrix=true;
-  //debug_keyboard=true;
+  debug_matrix=true;
+  debug_keyboard=true;
   //debug_mouse=true;
 }
