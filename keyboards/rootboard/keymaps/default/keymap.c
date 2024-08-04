@@ -120,19 +120,53 @@ static bool process_y_magic(uint16_t keycode, uint8_t mods) {
     return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    dprintf("%i record user", keycode);
-  switch (keycode) {
-        case KC_F: return process_f_magic(get_last_keycode(), get_last_mods(), record);
-        case KC_V: return  process_v_magic(get_last_keycode(), get_last_mods());
-        case KC_B: return  process_b_magic(get_last_keycode(), get_last_mods());
-        case KC_H: return  process_h_magic(get_last_keycode(), get_last_mods());
-        case KC_P: return  process_p_magic(get_last_keycode(), get_last_mods());
-        case KC_E: return  process_e_magic(get_last_keycode(), get_last_mods());
-        case KC_Y: return  process_y_magic(get_last_keycode(), get_last_mods());
-        }
+uint16_t history = KC_NO;
 
-    return true;
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    bool cont = true;
+    if (record->event.pressed) {
+  switch (keycode) {
+      case KC_F:
+        switch (history) {
+        case KC_C: tap_code16(KC_H); cont = false; break;
+        case KC_P: tap_code16(KC_L); cont = false; break;
+        }
+      break;
+      case KC_V:
+        switch (history) {
+        case KC_M: tap_code16(KC_P); cont = false; break;
+        case KC_C: tap_code16(KC_Y); cont = false; break;
+        }
+      break;
+      case KC_B:
+        switch (history) {
+        case KC_G: tap_code16(KC_H); cont = false; break;
+        }
+      break;
+      case KC_H:
+        switch (history) {
+        case KC_U: tap_code16(KC_E); cont = false; break;
+        case KC_L: tap_code16(KC_P); cont = false; break;
+        }
+      break;
+      case KC_P:
+        switch (history) {
+        case KC_H: tap_code16(KC_Y); cont = false; break;
+        }
+      break;
+      case KC_E:
+        switch (history) {
+        case KC_U: tap_code16(KC_H); cont = false; break;
+        }
+      break;
+      case KC_Y:
+        switch (history) {
+        case KC_C: tap_code16(KC_V); cont = false; break;
+        }
+      break;
+    }
+
+    return cont;
 }
 
 
