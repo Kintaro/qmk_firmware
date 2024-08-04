@@ -3,6 +3,8 @@
 
 #include QMK_KEYBOARD_H
 
+#include "print.h"
+
 enum custom_keycodes {
   FMAGIC = SAFE_RANGE,
   VMAGIC,
@@ -65,7 +67,7 @@ static void process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record)
     switch (keycode) {
         case KC_C: SEND_STRING("h"); break;
         case KC_P: SEND_STRING("l"); break;
-        default: SEND_STRING("f"); break;    
+        default: set_last_keycode("FMAGIC"); SEND_STRING("f"); break;    
     }
     }
 }
@@ -115,6 +117,7 @@ static void process_y_magic(uint16_t keycode, uint8_t mods) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    dprintf("%i record user", keycode);
   switch (keycode) {
         case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods(), record);  } return false;
         case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } return false;
@@ -131,7 +134,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
-  //debug_enable=true;
+  debug_enable=true;
   //debug_matrix=true;
   //debug_keyboard=true;
   //debug_mouse=true;
