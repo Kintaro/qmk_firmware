@@ -51,54 +51,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_P: KC_F; break;
-        case KC_O: KC_A; break;
-        case KC_L: KC_W; break;
+        case KC_P: return KC_F; break;
+        case KC_O: return KC_A; break;
+        case KC_L: return KC_W; break;
     }
 }
 
 static void process_f_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C: KC_H; break;
-        case KC_P: KC_L; break;
+        case KC_C: SEND_STRING("h"); break;
+        case KC_P: SEND_STRING("l"); break;
     }
 }
 
 static void process_v_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_M: KC_P; break;
-        case KC_C: KC_Y; break;
+        case KC_M: SEND_STRING("p"); break;
+        case KC_C: SEND_STRING("y"); break;
     }
 }
 
 static void process_b_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_G: KC_H; break;
+        case KC_G: SEND_STRING("h"); break;
     }
 }
 
 static void process_h_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: KC_E; break;
-        case KC_L: KC_P; break;
+        case KC_U: SEND_STRING("e"); break;
+        case KC_L: SEND_STRING("p"); break;
     }
 }
 
 static void process_p_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_H: KC_Y; break;
+        case KC_H: SEND_STRING("y"); break;
     }
 }
 
 static void process_e_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: KC_H; break;
+        case KC_U: SEND_STRING("h"); break;
     }
 }
 
 static void process_y_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C: KC_V; break;
+        case KC_C: SEND_STRING("v"); break;
     }
 }
 
