@@ -114,13 +114,13 @@ static void process_y_magic(uint16_t keycode, uint8_t mods) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (record->event.pressed) {
   switch (keycode) {
-        case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-        case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-      case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-      case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-      case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-      case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
-      case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
+        case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods());  } break;
+        case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } break;
+      case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods());  } break;
+      case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods());  } break;
+      case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods());  } break;
+      case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods());  } break;
+      case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods());  } break;
         }
   }
 
