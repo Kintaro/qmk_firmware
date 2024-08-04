@@ -53,6 +53,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case PMAGIC: return KC_F; break;
         case KC_O: return KC_A; break;
+        case KC_U: return KC_E; break;
         case KC_L: return KC_W; break;
     }
 
@@ -112,7 +113,6 @@ static void process_y_magic(uint16_t keycode, uint8_t mods) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (record->event.pressed) {
   switch (keycode) {
         case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods());  } return false;
         case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } return false;
@@ -122,7 +122,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods());  } return false;
       case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods());  } return false;
         }
-  }
 
     return true;
 }
