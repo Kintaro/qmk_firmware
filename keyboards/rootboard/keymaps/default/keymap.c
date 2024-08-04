@@ -3,8 +3,6 @@
 
 #include QMK_KEYBOARD_H
 
-#include "print.h"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       * ┌───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┐
@@ -52,74 +50,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_TRNS;
 }
 
-static bool process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record) {
-    if (record->event.pressed) {
-    switch (keycode) {
-        case KC_C: SEND_STRING("h"); return false;
-        case KC_P: SEND_STRING("l"); return false;
-        default: return true;    
-    }
-    }
-
-    return true;
-}
-
-static bool process_v_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_M: SEND_STRING("p"); return false;
-        case KC_C: SEND_STRING("y"); return false;
-        default: return true; 
-    }
-
-    return true;
-}
-
-static bool process_b_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_G: SEND_STRING("h"); return false;
-        default: return true; 
-    }
-
-    return true;
-}
-
-static bool process_h_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_U: SEND_STRING("e"); return false;
-        case KC_L: SEND_STRING("p"); return false;
-        default: return true; 
-    }
-
-    return true;
-}
-
-static bool process_p_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_H: SEND_STRING("y"); return false;
-        default: return true;
-    }
-
-    return true;
-}
-
-static bool process_e_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_U: SEND_STRING("h"); return false;
-        default: return true;
-    }
-
-    return true;
-}
-
-static bool process_y_magic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_C: SEND_STRING("v"); return false;
-        default: return true;
-    }
-
-    return true;
-}
-
 uint16_t history = KC_NO;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
@@ -164,6 +94,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         case KC_C: tap_code16(KC_V); cont = false; break;
         }
       break;
+    }
     }
 
     return cont;
