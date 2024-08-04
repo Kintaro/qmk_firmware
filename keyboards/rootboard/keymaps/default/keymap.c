@@ -56,10 +56,12 @@ static bool process_f_magic(uint16_t keycode, uint8_t mods, keyrecord_t* record)
     if (record->event.pressed) {
     switch (keycode) {
         case KC_C: SEND_STRING("h"); return false;
-        case KC_P: SEND_STRING("l"); break;
+        case KC_P: SEND_STRING("l"); return false;
         default: return true;    
     }
     }
+
+    return true;
 }
 
 static bool process_v_magic(uint16_t keycode, uint8_t mods) {
@@ -68,6 +70,8 @@ static bool process_v_magic(uint16_t keycode, uint8_t mods) {
         case KC_C: SEND_STRING("y"); return false;
         default: return true; 
     }
+
+    return true;
 }
 
 static bool process_b_magic(uint16_t keycode, uint8_t mods) {
@@ -75,6 +79,8 @@ static bool process_b_magic(uint16_t keycode, uint8_t mods) {
         case KC_G: SEND_STRING("h"); return false;
         default: return true; 
     }
+
+    return true;
 }
 
 static bool process_h_magic(uint16_t keycode, uint8_t mods) {
@@ -83,6 +89,8 @@ static bool process_h_magic(uint16_t keycode, uint8_t mods) {
         case KC_L: SEND_STRING("p"); return false;
         default: return true; 
     }
+
+    return true;
 }
 
 static bool process_p_magic(uint16_t keycode, uint8_t mods) {
@@ -90,6 +98,8 @@ static bool process_p_magic(uint16_t keycode, uint8_t mods) {
         case KC_H: SEND_STRING("y"); return false;
         default: return true;
     }
+
+    return true;
 }
 
 static bool process_e_magic(uint16_t keycode, uint8_t mods) {
@@ -97,6 +107,8 @@ static bool process_e_magic(uint16_t keycode, uint8_t mods) {
         case KC_U: SEND_STRING("h"); return false;
         default: return true;
     }
+
+    return true;
 }
 
 static bool process_y_magic(uint16_t keycode, uint8_t mods) {
@@ -104,6 +116,8 @@ static bool process_y_magic(uint16_t keycode, uint8_t mods) {
         case KC_C: SEND_STRING("v"); return false;
         default: return true;
     }
+
+    return true;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
