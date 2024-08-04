@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_P: return KC_F; break;
+        case PMAGIC: return KC_F; break;
         case KC_O: return KC_A; break;
         case KC_L: return KC_W; break;
     }
@@ -114,13 +114,13 @@ static void process_y_magic(uint16_t keycode, uint8_t mods) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (record->event.pressed) {
   switch (keycode) {
-        case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods());  } break;
-        case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } break;
-      case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods());  } break;
-      case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods());  } break;
-      case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods());  } break;
-      case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods());  } break;
-      case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods());  } break;
+        case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods());  } return false;
+        case VMAGIC: { process_v_magic(get_last_keycode(), get_last_mods());  } return false;
+      case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods());  } return false;
+      case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods());  } return false;
+      case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods());  } return false;
+      case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods());  } return false;
+      case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods());  } return false;
         }
   }
 
