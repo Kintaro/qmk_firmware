@@ -55,6 +55,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_O: return KC_A; break;
         case KC_L: return KC_W; break;
     }
+
+    return KC_TRNS;
 }
 
 static void process_f_magic(uint16_t keycode, uint8_t mods) {
