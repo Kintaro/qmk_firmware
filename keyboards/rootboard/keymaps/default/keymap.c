@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case PMAGIC: return KC_F; break;
+        case KC_P: return KC_F; break;
         case KC_O: return KC_A; break;
         case KC_U: return KC_E; break;
         case KC_L: return KC_W; break;
