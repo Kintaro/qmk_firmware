@@ -8,6 +8,7 @@ enum custom_keycodes {
   VMAGIC,
   BMAGIC,
   HMAGIC,
+  PMAGIC,
   EMAGIC,
   YMAGIC,
 };
@@ -53,14 +54,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_C:
     }
 }
-enum custom_keycodes {
-  FMAGIC = SAFE_RANGE,
-  VMAGIC,
-  BMAGIC,
-  HMAGIC,
-  EMAGIC,
-  YMAGIC,
-};
 
 static void process_f_magic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
@@ -95,6 +88,18 @@ static void process_p_magic(uint16_t keycode, uint8_t mods) {
     }
 }
 
+static void process_e_magic(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_U: KC_H; break;
+    }
+}
+
+static void process_y_magic(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_C: KC_V; break;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_achordion(keycode, record)) { return false; }
   if (!process_custom_shift_keys(keycode, record)) { return false; }
@@ -106,8 +111,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       case BMAGIC: { process_b_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
       case HMAGIC: { process_h_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
       case PMAGIC: { process_p_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
+      case EMAGIC: { process_e_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
+      case YMAGIC: { process_y_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
         }
-    }
+  }
 
     return true;
 }
