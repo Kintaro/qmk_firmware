@@ -51,7 +51,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C:
+        case KC_P: KC_F; break;
+        case KC_O: KC_A; break;
+        case KC_L: KC_W; break;
     }
 }
 
@@ -101,9 +103,6 @@ static void process_y_magic(uint16_t keycode, uint8_t mods) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  if (!process_achordion(keycode, record)) { return false; }
-  if (!process_custom_shift_keys(keycode, record)) { return false; }
- 
   if (record->event.pressed) {
   switch (keycode) {
         case FMAGIC: { process_f_magic(get_last_keycode(), get_last_mods()); set_last_keycode(KC_SPC); } return false;
