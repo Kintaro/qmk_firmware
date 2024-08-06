@@ -70,7 +70,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 static void process_fmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_C: SEND_STRING("h"); break;
-        case KC_P: SEND_STRING("l"); break;
+        case PMAGIC: SEND_STRING("l"); break;
         default: SEND_STRING("f"); break;
     }
 }
@@ -79,7 +79,7 @@ static void process_pmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_M: SEND_STRING("v"); break;
         case KC_L: SEND_STRING("h"); break;
-        case KC_H: SEND_STRING("y"); break;
+        case HMAGIC: SEND_STRING("y"); break;
         default: SEND_STRING("p"); break;
     }
 }
@@ -125,8 +125,8 @@ static void process_bmagic(uint16_t keycode, uint8_t mods) {
 
 static void process_xmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_P: SEND_STRING("f"); break;
-        case KC_H: SEND_STRING("p"); break;
+        case PMAGIC: SEND_STRING("f"); break;
+        case HMAGIC: SEND_STRING("p"); break;
         case KC_O: SEND_STRING("a"); break;
         case KC_U: SEND_STRING("e"); break;
     }
