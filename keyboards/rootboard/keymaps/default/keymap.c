@@ -4,14 +4,7 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    FMAGIC = SAFE_RANGE,
-    PMAGIC,
-    XMAGIC,
-    YMAGIC,
-    HMAGIC,
-    EMAGIC,
-    BMAGIC,
-    VMAGIC,
+    MAGIC = SAFE_RANGE
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -30,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    XMAGIC,          KC_G,         KC_O,         KC_U,         KC_COMM,
+        KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    MAGIC,          KC_G,         KC_O,         KC_U,         KC_COMM,
 	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
         KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(2, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LT(1, KC_SPC)
@@ -50,124 +43,88 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
-                            uint8_t* remembered_mods) {
-    switch (keycode) {
-        case XMAGIC:
-            return false;  // Ignore ALTREP keys.
-    }
-
-    return true;  // Other keys can be repeated.
-}
-
-static void process_fmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_C: tap_code16(KC_H); break;
-        case KC_P: tap_code16(KC_L); break;
-        default: tap_code16(KC_F); break;
-    }
-}
-
-static void process_pmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_M: tap_code16(KC_V); break;
-        case KC_L: tap_code16(KC_H); break;
-        case KC_H: tap_code16(KC_Y); break;
-        default: tap_code16(KC_P); break;
-    }
-}
-
-static void process_vmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_M: tap_code16(KC_P); break;
-        case KC_C: tap_code16(KC_Y); break;
-        default: tap_code16(KC_V); break;
-    }
-}
-
-static void process_ymagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_C: tap_code16(KC_V); break;
-        default: tap_code16(KC_Y); break;
-    }
-}
-
-static void process_hmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_U: tap_code16(KC_E); break;
-        case KC_L: tap_code16(KC_P); break;
-        case KC_C: tap_code16(KC_F); break;
-        case KC_G: tap_code16(KC_B); break;
-        default: tap_code16(KC_H); break;
-    }
-}
-
-static void process_emagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_U: tap_code16(KC_H); break;
-        default: tap_code16(KC_E); break;
-    }
-}
-
-static void process_bmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_G: tap_code16(KC_H); break;
-        default: tap_code16(KC_B); break;
-    }
-}
-
-static void process_xmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_P: tap_code16(KC_F); break;
-        case KC_H: tap_code16(KC_P); break;
-        case KC_O: tap_code16(KC_A); break;
-        case KC_U: tap_code16(KC_E); break;
-    }
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    switch (keycode) {
-        case KC_F: 
-            if (record->event.pressed) {
-                process_fmagic(get_last_keycode(), get_last_mods());
+    if (keycode == KC_F) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_C: register_code(KC_H); keycode = KC_H; break;
+                case KC_P: register_code(KC_L); keycode = KC_L; break;
             }
-            return false;
-        case KC_P: 
-            if (record->event.pressed) {
-                process_pmagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_V) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_M: register_code(KC_P); keycode = KC_P; break;
+                case KC_C: register_code(KC_Y); keycode = KC_Y; break;
             }
-            return false;
-        case XMAGIC: 
-            if (record->event.pressed) {
-                process_xmagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_B) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_G: register_code(KC_H); keycode = KC_H; break;
             }
-            return false;
-        case KC_Y: 
-            if (record->event.pressed) {
-                process_ymagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_H) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_U: register_code(KC_E); keycode = KC_E; break;
+                case KC_L: register_code(KC_P); keycode = KC_P; break;
+                case KC_G: register_code(KC_B); keycode = KC_B; break;
             }
-            return false;
-        case KC_H: 
-            if (record->event.pressed) {
-                process_hmagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_P) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_H: register_code(KC_Y); keycode = KC_Y; break;
+                case KC_M: register_code(KC_V); keycode = KC_V; break;
+                case KC_L: register_code(KC_H); keycode = KC_H; break;
             }
-            return false;
-        case KC_E: 
-            if (record->event.pressed) {
-                process_emagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_E) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_U: register_code(KC_H); keycode = KC_H; break;
             }
-            return false;
-        case BMAGIC: 
-            if (record->event.pressed) {
-                process_bmagic(get_last_keycode(), get_last_mods());
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+    else if (keycode == KC_Y) {
+        if (record->event.pressed) {
+            switch predecessor_key {
+                case KC_C: register_code(KC_V); keycode = KC_V; break;
             }
-            return false;
-        case KC_V: 
-            if (record->event.pressed) {
-                process_vmagic(get_last_keycode(), get_last_mods());
-            }
-            return false;
-    }
+		}
+		else {
+			//unregister_code(adaptive_key);
+		}
+	}
+
+
+	if (record->event.pressed) {
+        predecessor_key = keycode;
+	}
 
     return true;
 }
