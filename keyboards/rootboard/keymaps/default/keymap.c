@@ -49,8 +49,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (keycode == KC_F) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_C: register_code(KC_H); keycode = KC_H; break;
-                case KC_P: register_code(KC_L); keycode = KC_L; break;
+                case KC_C: unregister_code(KC_F); register_code(KC_H); keycode = KC_H; break;
+                case KC_P: unregister_code(KC_F); register_code(KC_L); keycode = KC_L; break;
             }
 		}
 		else {
@@ -60,8 +60,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_V) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_M: register_code(KC_P); keycode = KC_P; break;
-                case KC_C: register_code(KC_Y); keycode = KC_Y; break;
+                case KC_M: unregister_code(KC_V); register_code(KC_P); keycode = KC_P; break;
+                case KC_C: unregister_code(KC_V); register_code(KC_Y); keycode = KC_Y; break;
             }
 		}
 		else {
@@ -71,7 +71,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_B) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_G: register_code(KC_H); keycode = KC_H; break;
+                case KC_G: unregister_code(KC_B); register_code(KC_H); keycode = KC_H; break;
             }
 		}
 		else {
@@ -81,9 +81,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_H) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_U: register_code(KC_E); keycode = KC_E; break;
-                case KC_L: register_code(KC_P); keycode = KC_P; break;
-                case KC_G: register_code(KC_B); keycode = KC_B; break;
+                case KC_U: unregister_code(KC_H); register_code(KC_E); keycode = KC_E; break;
+                case KC_L: unregister_code(KC_H); register_code(KC_P); keycode = KC_P; break;
+                case KC_G: unregister_code(KC_H); register_code(KC_B); keycode = KC_B; break;
             }
 		}
 		else {
@@ -93,9 +93,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_P) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_H: register_code(KC_Y); keycode = KC_Y; break;
-                case KC_M: register_code(KC_V); keycode = KC_V; break;
-                case KC_L: register_code(KC_H); keycode = KC_H; break;
+                case KC_H: unregister_code(KC_P); register_code(KC_Y); keycode = KC_Y; break;
+                case KC_M: unregister_code(KC_P); register_code(KC_V); keycode = KC_V; break;
+                case KC_L: unregister_code(KC_P); register_code(KC_H); keycode = KC_H; break;
             }
 		}
 		else {
@@ -105,7 +105,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_E) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_U: register_code(KC_H); keycode = KC_H; break;
+                case KC_U: unregister_code(KC_E); register_code(KC_H); keycode = KC_H; break;
             }
 		}
 		else {
@@ -115,7 +115,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     else if (keycode == KC_Y) {
         if (record->event.pressed) {
             switch (predecessor_key) {
-                case KC_C: register_code(KC_V); keycode = KC_V; break;
+                case KC_C: unregister_code(KC_Y); register_code(KC_V); keycode = KC_V; break;
             }
 		}
 		else {
