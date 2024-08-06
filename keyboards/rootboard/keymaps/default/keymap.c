@@ -45,18 +45,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t predecessor_key = KC_NO;
 uint16_t adaptive_key = KC_NO;
-bool skip = false;
+bool send = true;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    skip = false;
+    send = false;
     uprintf("KL: kc: 0x%04X", keycode);
     dprintf("KL: kc: 0x%04X", keycode);
     if (keycode == KC_F) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_C: register_code(KC_H); keycode = KC_H; break;
-                case KC_P: register_code(KC_L); keycode = KC_L; break;
+                case KC_C: register_code(KC_H); keycode = KC_H; send = false; break;
+                case KC_P: register_code(KC_L); keycode = KC_L; send = false; break;
             }
 		}
 		else {
@@ -67,8 +67,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_M: register_code(KC_P); keycode = KC_P; break;
-                case KC_C: register_code(KC_Y); keycode = KC_Y; break;
+                case KC_M: register_code(KC_P); keycode = KC_P; send = false; break;
+                case KC_C: register_code(KC_Y); keycode = KC_Y; send = false; break;
             }
 		}
 		else {
@@ -79,7 +79,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_G: register_code(KC_H); keycode = KC_H; break;
+                case KC_G: register_code(KC_H); keycode = KC_H; send = false; break;
             }
 		}
 		else {
@@ -90,9 +90,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_E); keycode = KC_E; skip = true; break;
-                case KC_L: register_code(KC_P); keycode = KC_P; break;
-                case KC_G: register_code(KC_B); keycode = KC_B; break;
+                case KC_U: register_code(KC_E); keycode = KC_E; send = false; break;
+                case KC_L: register_code(KC_P); keycode = KC_P; send = false; break;
+                case KC_G: register_code(KC_B); keycode = KC_B; send = false; break;
             }
 		}
 		else {
@@ -103,9 +103,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_H: register_code(KC_Y); keycode = KC_Y; break;
-                case KC_M: register_code(KC_V); keycode = KC_V; break;
-                case KC_L: register_code(KC_H); keycode = KC_H; break;
+                case KC_H: register_code(KC_Y); keycode = KC_Y; send = false; break;
+                case KC_M: register_code(KC_V); keycode = KC_V; send = false; break;
+                case KC_L: register_code(KC_H); keycode = KC_H; send = false; break;
             }
 		}
 		else {
@@ -116,7 +116,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_H); keycode = KC_H;  skip = true; break;
+                case KC_U: register_code(KC_H); keycode = KC_H; send = false; break;
             }
 		}
 		else {
@@ -127,7 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_C: register_code(KC_V); keycode = KC_V; break;
+                case KC_C: register_code(KC_V); keycode = KC_V; send = false; break;
             }
 		}
 		else {
@@ -140,7 +140,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         predecessor_key = keycode & 0xff;
 	}
 
-    return true;
+    return send;
 }
 
 
