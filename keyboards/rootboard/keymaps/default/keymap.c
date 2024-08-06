@@ -55,8 +55,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_C: register_code(KC_H); keycode = KC_H; send = false; break;
-                case KC_P: register_code(KC_L); keycode = KC_L; send = false; break;
+                case KC_C: register_code(KC_H); keycode = KC_H; adaptive_key = KC_H; send = false; break;
+                case KC_P: register_code(KC_L); keycode = KC_L; adaptive_key = KC_L; send = false; break;
             }
 		}
 		else {
@@ -67,8 +67,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_M: register_code(KC_P); keycode = KC_P; send = false; break;
-                case KC_C: register_code(KC_Y); keycode = KC_Y; send = false; break;
+                case KC_M: register_code(KC_P); keycode = KC_P; adaptive_key = KC_P; send = false; break;
+                case KC_C: register_code(KC_Y); keycode = KC_Y; adaptive_key = KC_Y; send = false; break;
             }
 		}
 		else {
@@ -79,7 +79,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_G: register_code(KC_H); keycode = KC_H; send = false; break;
+                case KC_G: register_code(KC_H); keycode = KC_H; adaptive_key = KC_H; send = false; break;
             }
 		}
 		else {
@@ -90,9 +90,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_E); keycode = KC_E; send = false; break;
-                case KC_L: register_code(KC_P); keycode = KC_P; send = false; break;
-                case KC_G: register_code(KC_B); keycode = KC_B; send = false; break;
+                case KC_U: register_code(KC_E); keycode = KC_E; adaptive_key = KC_E; send = false; break;
+                case KC_L: register_code(KC_P); keycode = KC_P; adaptive_key = KC_P; send = false; break;
+                case KC_G: register_code(KC_B); keycode = KC_B; adaptive_key = KC_B; send = false; break;
             }
 		}
 		else {
@@ -103,9 +103,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_H: register_code(KC_Y); keycode = KC_Y; send = false; break;
-                case KC_M: register_code(KC_V); keycode = KC_V; send = false; break;
-                case KC_L: register_code(KC_H); keycode = KC_H; send = false; break;
+                case KC_H: register_code(KC_Y); keycode = KC_Y; adaptive_key = KC_Y; send = false; break;
+                case KC_M: register_code(KC_V); keycode = KC_V; adaptive_key = KC_V; send = false; break;
+                case KC_L: register_code(KC_H); keycode = KC_H; adaptive_key = KC_H; send = false; break;
             }
 		}
 		else {
@@ -116,7 +116,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_H); keycode = KC_H; send = false; break;
+                case KC_U: register_code(KC_H); keycode = KC_H; adaptive_key = KC_H; send = false; break;
             }
 		}
 		else {
@@ -127,7 +127,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_C: register_code(KC_V); keycode = KC_V; send = false; break;
+                case KC_C: register_code(KC_V); keycode = KC_V; adaptive_key = KC_V; send = false; break;
             }
 		}
 		else {
