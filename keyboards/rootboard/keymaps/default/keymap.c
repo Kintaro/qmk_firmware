@@ -86,7 +86,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 			unregister_code(adaptive_key);
 		}
 	}
-    else if (keycode == KC_H) {
+    else if ((keycode && 0xff) == KC_H) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
@@ -112,7 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 			unregister_code(adaptive_key);
 		}
 	}
-    else if (keycode == KC_E) {
+    else if ((keycode 0xff) == KC_E) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
@@ -137,7 +137,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 
 	if (record->event.pressed && !skip) {
-        predecessor_key = keycode;
+        predecessor_key = keycode && 0xff;
 	}
 
     return true;
