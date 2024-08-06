@@ -45,8 +45,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t predecessor_key = KC_NO;
 uint16_t adaptive_key = KC_NO;
+bool skip = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    skip = false;
+    
     if (keycode == KC_F) {
         if (record->event.pressed) {
             adaptive_key = keycode;
@@ -86,7 +89,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_E); keycode = KC_E; break;
+                case KC_U: register_code(KC_E); keycode = KC_E; skip = true; break;
                 case KC_L: register_code(KC_P); keycode = KC_P; break;
                 case KC_G: register_code(KC_B); keycode = KC_B; break;
             }
@@ -112,7 +115,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             adaptive_key = keycode;
             switch (predecessor_key) {
-                case KC_U: register_code(KC_H); keycode = KC_H; break;
+                case KC_U: register_code(KC_H); keycode = KC_H;  skip = true; break;
             }
 		}
 		else {
@@ -132,7 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 	}
 
 
-	if (record->event.pressed) {
+	if (record->event.pressed) && !skip {
         predecessor_key = keycode;
 	}
 
