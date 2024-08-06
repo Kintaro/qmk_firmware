@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [0] = LAYOUT_split_3x5_3(
         KC_X,         FMAGIC,         KC_D,         PMAGIC,         KC_J,                    XMAGIC,          KC_G,         KC_O,         KC_U,         KC_COMM,
-	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    YMAGIC,          LSFT_T(HMAGIC), LGUI_T(KC_A), LALT_T(EMAGIC), LCTL_T(KC_I),
+	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    YMAGIC,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(EMAGIC), LCTL_T(KC_I),
         BMAGIC,         VMAGIC,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(2, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LT(1, KC_SPC)
 			     ),
@@ -154,7 +154,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 process_ymagic(get_last_keycode(), get_last_mods());
             }
             return false;
-        case HMAGIC: 
+        case KC_H: 
             if (record->event.pressed) {
                 process_hmagic(get_last_keycode(), get_last_mods());
             }
