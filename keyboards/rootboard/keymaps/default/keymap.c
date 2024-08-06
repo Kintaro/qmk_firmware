@@ -69,66 +69,66 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 
 static void process_fmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C: SEND_STRING("h"); break;
-        case PMAGIC: SEND_STRING("l"); break;
-        default: SEND_STRING("f"); break;
+        case KC_C: tap_code16(KC_H); break;
+        case PMAGIC: tap_code16(KC_L); break;
+        default: tap_code16(KC_F); break;
     }
 }
 
 static void process_pmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_M: SEND_STRING("v"); break;
-        case KC_L: SEND_STRING("h"); break;
-        case HMAGIC: SEND_STRING("y"); break;
-        default: SEND_STRING("p"); break;
+        case KC_M: tap_code16(KC_V); break;
+        case KC_L: tap_code16(KC_H); break;
+        case HMAGIC: tap_code16(KC_Y); break;
+        default: tap_code16(KC_P); break;
     }
 }
 
 static void process_vmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_M: SEND_STRING("p"); break;
-        case KC_C: SEND_STRING("y"); break;
-        default: SEND_STRING("v"); break;
+        case KC_M: tap_code16(KC_P); break;
+        case KC_C: tap_code16(KC_Y); break;
+        default: tap_code16(KC_V); break;
     }
 }
 
 static void process_ymagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_C: SEND_STRING("v"); break;
-        default: SEND_STRING("y"); break;
+        case KC_C: tap_code16(KC_V); break;
+        default: tap_code16(KC_Y); break;
     }
 }
 
 static void process_hmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: SEND_STRING("e"); break;
-        case KC_L: SEND_STRING("p"); break;
-        case KC_C: SEND_STRING("f"); break;
-        case KC_G: SEND_STRING("b"); break;
-        default: SEND_STRING("h"); break;
+        case KC_U: tap_code16(KC_E); break;
+        case KC_L: tap_code16(KC_P); break;
+        case KC_C: tap_code16(KC_F); break;
+        case KC_G: tap_code16(KC_B); break;
+        default: tap_code16(KC_H); break;
     }
 }
 
 static void process_emagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_U: SEND_STRING("h"); break;
-        default: SEND_STRING("e"); break;
+        case KC_U: tap_code16(KC_H); break;
+        default: tap_code16(KC_E); break;
     }
 }
 
 static void process_bmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case KC_G: SEND_STRING("h"); break;
-        default: SEND_STRING("b"); break;
+        case KC_G: tap_code16(KC_H); break;
+        default: tap_code16(KC_B); break;
     }
 }
 
 static void process_xmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case PMAGIC: SEND_STRING("f"); break;
-        case HMAGIC: SEND_STRING("p"); break;
-        case KC_O: SEND_STRING("a"); break;
-        case KC_U: SEND_STRING("e"); break;
+        case PMAGIC: tap_code16(KC_F); break;
+        case HMAGIC: tap_code16(KC_P); break;
+        case KC_O: tap_code16(KC_A); break;
+        case KC_U: tap_code16(KC_E); break;
     }
 }
 
