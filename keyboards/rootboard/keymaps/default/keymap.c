@@ -30,9 +30,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         FMAGIC,         KC_D,         PMAGIC,         KC_J,                    XMAGIC,          KC_G,         KC_O,         KC_U,         KC_COMM,
-	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    YMAGIC,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
-        BMAGIC,         VMAGIC,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
+        KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    XMAGIC,          KC_G,         KC_O,         KC_U,         KC_COMM,
+	LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
+        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          KC_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(2, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LT(1, KC_SPC)
 			     ),
     [1] = LAYOUT_split_3x5_3(
@@ -53,14 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
     switch (keycode) {
-        case FMAGIC:
-        case PMAGIC:
         case XMAGIC:
-        case YMAGIC:
-        case KC_H:
-        case KC_E:
-        case BMAGIC:
-        case VMAGIC:
             return false;  // Ignore ALTREP keys.
     }
 
@@ -70,7 +63,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 static void process_fmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_C: tap_code16(KC_H); break;
-        case PMAGIC: tap_code16(KC_L); break;
+        case KC_P: tap_code16(KC_L); break;
         default: tap_code16(KC_F); break;
     }
 }
@@ -79,7 +72,7 @@ static void process_pmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_M: tap_code16(KC_V); break;
         case KC_L: tap_code16(KC_H); break;
-        case HMAGIC: tap_code16(KC_Y); break;
+        case KC_H: tap_code16(KC_Y); break;
         default: tap_code16(KC_P); break;
     }
 }
@@ -125,8 +118,8 @@ static void process_bmagic(uint16_t keycode, uint8_t mods) {
 
 static void process_xmagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-        case PMAGIC: tap_code16(KC_F); break;
-        case HMAGIC: tap_code16(KC_P); break;
+        case KC_P: tap_code16(KC_F); break;
+        case KC_H: tap_code16(KC_P); break;
         case KC_O: tap_code16(KC_A); break;
         case KC_U: tap_code16(KC_E); break;
     }
@@ -134,12 +127,12 @@ static void process_xmagic(uint16_t keycode, uint8_t mods) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
-        case FMAGIC: 
+        case KC_F: 
             if (record->event.pressed) {
                 process_fmagic(get_last_keycode(), get_last_mods());
             }
             return false;
-        case PMAGIC: 
+        case KC_P: 
             if (record->event.pressed) {
                 process_pmagic(get_last_keycode(), get_last_mods());
             }
@@ -149,7 +142,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 process_xmagic(get_last_keycode(), get_last_mods());
             }
             return false;
-        case YMAGIC: 
+        case KC_Y: 
             if (record->event.pressed) {
                 process_ymagic(get_last_keycode(), get_last_mods());
             }
@@ -169,7 +162,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 process_bmagic(get_last_keycode(), get_last_mods());
             }
             return false;
-        case VMAGIC: 
+        case KC_V: 
             if (record->event.pressed) {
                 process_vmagic(get_last_keycode(), get_last_mods());
             }
