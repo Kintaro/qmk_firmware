@@ -49,7 +49,8 @@ bool skip = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     skip = false;
-    
+    uprintf("KL: kc: 0x%04X", keycode);
+    dprintf("KL: kc: 0x%04X", keycode);
     if (keycode == KC_F) {
         if (record->event.pressed) {
             adaptive_key = keycode;
