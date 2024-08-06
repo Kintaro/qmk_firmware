@@ -92,13 +92,6 @@ static void process_vmagic(uint16_t keycode, uint8_t mods) {
     }
 }
 
-static void process_bmagic(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-        case KC_G: SEND_STRING("h"); break;
-        default: SEND_STRING("b"); break;
-    }
-}
-
 static void process_ymagic(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_C: SEND_STRING("v"); break;
