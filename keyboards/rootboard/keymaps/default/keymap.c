@@ -115,22 +115,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case MM_C:
       if (record->event.pressed) { // When MYMACRO is pressed.
           tap_code16(KC_C);
-          set_oneshot_layer(1, ONESHOT_START);
+          set_oneshot_layer(1, ONESHOT_START); clear_oneshot_layer_state (ONESHOT_PRESSED);
       } else {
+          clear_oneshot_layer_state (ONESHOT_PRESSED);
       }
       return false;
     case MM_P:
       if (record->event.pressed) { // When MYMACRO is pressed.
           tap_code16(KC_P);
-          set_oneshot_layer(2, ONESHOT_START);
+          set_oneshot_layer(2, ONESHOT_START); clear_oneshot_layer_state (ONESHOT_PRESSED);
       } else {
+          clear_oneshot_layer_state (ONESHOT_PRESSED);
       }
       return false;
-  }
-
-    if (record->event.pressed && is_oneshot_layer_active())
-      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-      
+  }   
 
   return true;
 }
