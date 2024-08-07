@@ -108,35 +108,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			     ),
 };
 
+bool in_layer = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case MM_C:
       if (record->event.pressed) { // When MYMACRO is pressed.
         tap_code16(KC_C);   
-        layer_move(1);       
+        layer_move(1);     
+        in_layer = true;
       }
       return false;
     case MM_P:
       if (record->event.pressed) { // When MYMACRO is pressed.
         tap_code16(KC_P);   
-        layer_move(2);       
+        layer_move(2);   
+        in_layer = true;
       }
       return false;
-    case KC_H:
-    case KC_V:
-    case KC_F:
-    case KC_Y:
-    case KC_L:
-    case KC_P:
-    case KC_B:
-    case KC_W:
-    case KC_A:
-    case KC_E:
-        if (record->event.pressed) {
-      layer_move(0);
-        }
-      return true;
   }
+  if (record->event.pressed && in_layer) {
+            layer_move(0);
+            in_layer = false;
+        }
   return true;
 }
 
