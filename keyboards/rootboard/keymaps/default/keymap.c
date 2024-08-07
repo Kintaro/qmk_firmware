@@ -3,14 +3,9 @@
 
 #include QMK_KEYBOARD_H
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-	if (record->event.pressed) {
-		switch(id) {
-			case 0:
-				return MACRO(T(C), OSL(1), END);
-		}
-	}
-	return MACRO_NONE;
+enum custom_keycodes {
+  MM_C = SAFE_RANGE,
+  // More custom keycodes...
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -31,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x5_3(
         KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
 	    LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
-        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          M(0),         KC_QUOT,      KC_SLASH,     KC_DOT,
+        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          MM_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(9, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LTSFT_(KC_SPC)
 			     ),
     // C
@@ -105,6 +100,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     LT(2, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LT(1, KC_SPC)
 			     ),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case MM_C:
+      if (record->event.pressed) { // When MYMACRO is pressed.
+        tap_code16(KC_C));   
+        layer_move(1);       
+      }
+      return false;
+    case MM_P:
+      if (record->event.pressed) { // When MYMACRO is pressed.
+        tap_code16(KC_P));   
+        layer_move(2);       
+      }
+      return false;
+  }
+  layer_move(0);
+  return true;
+}
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
