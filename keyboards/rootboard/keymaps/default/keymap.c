@@ -132,7 +132,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     case KC_W:
     case KC_A:
     case KC_E:
+        if (record->event.pressed) {
       layer_move(0);
+        }
       return true;
   }
   return true;
