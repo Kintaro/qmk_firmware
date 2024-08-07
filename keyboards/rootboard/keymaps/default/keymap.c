@@ -108,29 +108,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			     ),
 };
 
-bool in_layer = false;
-
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case MM_C:
       if (record->event.pressed) { // When MYMACRO is pressed.
-        tap_code16(KC_C);   
-        layer_move(1);     
-        in_layer = true;
+        SEND_STRING(("c")OSL(1));
       }
       return false;
     case MM_P:
       if (record->event.pressed) { // When MYMACRO is pressed.
-        tap_code16(KC_P);   
-        layer_move(2);   
-        in_layer = true;
+          SEND_STRING(("p")OSL(2));
       }
       return false;
   }
-  if (record->event.pressed && in_layer) {
-            layer_move(0);
-            in_layer = false;
-        }
+
   return true;
 }
 
