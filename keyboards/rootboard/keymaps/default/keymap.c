@@ -122,8 +122,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         layer_move(2);       
       }
       return false;
+    case KC_H:
+    case KC_V:
+    case KC_F:
+    case KC_Y:
+    case KC_L:
+    case KC_P:
+    case KC_B:
+    case KC_W:
+    case KC_A:
+    case KC_E:
+      layer_move(0);
+      return true;
   }
-  //layer_move(0);
   return true;
 }
 
