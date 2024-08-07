@@ -25,9 +25,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         KC_F,         KC_D,         OSL(2),         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
-	    LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
-        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          OSL(1),         KC_QUOT,      KC_SLASH,     KC_DOT,
+        KC_X,         KC_F,         KC_D,         OSL(2),         KC_J,                    KC_ESC,        OSL(4),         OSL(8),         OSL(5),         KC_COMM,
+	    LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(OSL(6)), KC_W,                    KC_Y,          LSFT_T(OSL(7)), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
+        KC_B,         KC_V,         KC_K,         OSL(3),         KC_Q,                    KC_Z,          OSL(1),         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(9, KC_R),  KC_BSPC,      LT(11, KC_TAB),           LT(10, KC_DOT), KC_ENT,       LSFT_T(KC_SPC)
 			     ),
     // C
@@ -117,6 +117,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         return true;
     case OSL(2):
         if (record->event.pressed) tap_code16(KC_P);
+        return true;
+      case OSL(3):
+        if (record->event.pressed) tap_code16(KC_M);
+        return true;
+      case OSL(4):
+        if (record->event.pressed) tap_code16(KC_G);
+        return true;
+      case OSL(5):
+        if (record->event.pressed) tap_code16(KC_U);
+        return true;
+      case OSL(6):
+        if (record->event.pressed) tap_code16(KC_L);
+        return true;
+      case OSL(7):
+        if (record->event.pressed) tap_code16(KC_H);
+        return true;
+      case OSL(8):
+        if (record->event.pressed) tap_code16(KC_O);
         return true;
   }   
 
