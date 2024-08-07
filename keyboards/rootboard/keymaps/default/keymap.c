@@ -117,7 +117,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
           tap_code16(KC_C);
           set_oneshot_layer(1, ONESHOT_START);
       } else {
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
       }
       return false;
     case MM_P:
@@ -125,10 +124,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
           tap_code16(KC_P);
           set_oneshot_layer(2, ONESHOT_START);
       } else {
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
       }
       return false;
   }
+
+    if (record->event.pressed && is_oneshot_layer_active())
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+      return true;
 
   return true;
 }
