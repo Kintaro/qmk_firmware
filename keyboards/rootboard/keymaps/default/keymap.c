@@ -5,6 +5,7 @@
 
 enum custom_keycodes {
   MM_C = SAFE_RANGE,
+  MM_P
   // More custom keycodes...
 };
 
@@ -24,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         KC_F,         KC_D,         KC_P,         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
+        KC_X,         KC_F,         KC_D,         MM_P,         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
 	    LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
         KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          MM_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(9, KC_R),  KC_BSPC,      LT(1, KC_TAB),           LT(2, KC_DOT), KC_ENT,       LTSFT_(KC_SPC)
