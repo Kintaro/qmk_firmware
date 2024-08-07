@@ -25,9 +25,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                   └───┘   └───┘
       */
     [0] = LAYOUT_split_3x5_3(
-        KC_X,         KC_F,         KC_D,         MM_P,         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
+        KC_X,         KC_F,         KC_D,         OSL(2),         KC_J,                    KC_ESC,        KC_G,         KC_O,         KC_U,         KC_COMM,
 	    LCTL_T(KC_N), LALT_T(KC_S), LGUI_T(KC_T), LSFT_T(KC_L), KC_W,                    KC_Y,          LSFT_T(KC_H), LGUI_T(KC_A), LALT_T(KC_E), LCTL_T(KC_I),
-        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          MM_C,         KC_QUOT,      KC_SLASH,     KC_DOT,
+        KC_B,         KC_V,         KC_K,         KC_M,         KC_Q,                    KC_Z,          OSL(1),         KC_QUOT,      KC_SLASH,     KC_DOT,
                                     LT(9, KC_R),  KC_BSPC,      LT(11, KC_TAB),           LT(10, KC_DOT), KC_ENT,       LSFT_T(KC_SPC)
 			     ),
     // C
@@ -112,22 +112,12 @@ bool oneshot = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
-    case MM_C:
-      if (record->event.pressed) { // When MYMACRO is pressed.
-          tap_code16(KC_C);
-          set_oneshot_layer(1, ONESHOT_START); clear_oneshot_layer_state (ONESHOT_PRESSED);
-      } else {
-          clear_oneshot_layer_state (ONESHOT_PRESSED);
-      }
-      return false;
-    case MM_P:
-      if (record->event.pressed) { // When MYMACRO is pressed.
-          tap_code16(KC_P);
-          set_oneshot_layer(2, ONESHOT_START); clear_oneshot_layer_state (ONESHOT_PRESSED);
-      } else {
-          clear_oneshot_layer_state (ONESHOT_PRESSED);
-      }
-      return false;
+    case OSL(1):
+        if (record->event.pressed) tap_code16(KC_C);
+        return true;
+    case OSL(2):
+        if (record->event.pressed) tap_code16(KC_P);
+        return true;
   }   
 
   return true;
