@@ -108,22 +108,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			     ),
 };
 
+bool oneshot = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case MM_C:
       if (record->event.pressed) { // When MYMACRO is pressed.
           tap_code16(KC_C);
           set_oneshot_layer(1, ONESHOT_START);
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
+          oneshot = true;
       }
       return false;
     case MM_P:
       if (record->event.pressed) { // When MYMACRO is pressed.
           tap_code16(KC_P);
           set_oneshot_layer(2, ONESHOT_START);
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
+          oneshot = true;
       }
       return false;
+  }
+
+  if (record->event.pressed && oneshot) {   
+      clear_oneshot_layer_state(ONESHOT_PRESSED);
+      oneshot = false;
   }
 
   return true;
